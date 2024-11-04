@@ -5,25 +5,45 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        boolean clienteIdValido = false;
 
-        // Exibe um menu para o usuário
         System.out.println("Bem-vindo ao sistema de pedidos!");
-        System.out.print("Digite o ID do cliente: ");
-        int clienteId = scanner.nextInt();
-        scanner.nextLine(); // Limpa o buffer do scanner
 
-        System.out.print("Digite o prato principal: ");
-        String pratoPrincipal = scanner.nextLine();
+        while (!clienteIdValido) {
+            // Solicita o ID do cliente
+            System.out.print("Digite o ID do cliente: ");
+            int clienteId = scanner.nextInt();
+            scanner.nextLine(); // Limpa o buffer do scanner
 
-        System.out.print("Digite a bebida: ");
-        String bebidas = scanner.nextLine();
+            try {
+                // Verifica se o clienteId é válido chamando o método clienteExiste
+                if (PedidoService.clienteExiste(clienteId)) {
+                    clienteIdValido = true;
 
-        System.out.print("Digite a sobremesa: ");
-        String sobremesas = scanner.nextLine();
+                    // Solicita os detalhes do pedido
+                    System.out.print("Digite o prato principal: ");
+                    String pratoPrincipal = scanner.nextLine();
 
-        // Adiciona o pedido usando o PedidoService
-        PedidoService.adicionarItemAoPedido(clienteId, pratoPrincipal, bebidas, sobremesas);
+                    System.out.print("Digite a bebida: ");
+                    String bebidas = scanner.nextLine();
+
+                    System.out.print("Digite a sobremesa: ");
+                    String sobremesas = scanner.nextLine();
+
+                    // Adiciona o pedido usando o PedidoService
+                    PedidoService.adicionarItemAoPedido(clienteId, pratoPrincipal, bebidas, sobremesas);
+
+                } else {
+                    System.out.println("ID do cliente inválido. Tente novamente.");
+                }
+            } catch (Exception e) {
+                System.out.println("Ocorreu um erro ao verificar o cliente. Tente novamente.");
+                e.printStackTrace();
+            }
+        }
 
         scanner.close();
     }
 }
+
+
