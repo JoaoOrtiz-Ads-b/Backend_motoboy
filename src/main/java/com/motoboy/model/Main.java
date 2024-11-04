@@ -1,26 +1,29 @@
 package com.motoboy.model;
 
-import java.sql.SQLException;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        try {
-            ClienteDAO clienteDAO = new ClienteDAO();
+        Scanner scanner = new Scanner(System.in);
 
-            // Adicionar um cliente
-            //Cliente cliente = new Cliente(0, "", "");
-            //clienteDAO.adicionarCliente(cliente);
-            //System.out.println("Cliente adicionado com sucesso!");
+        // Exibe um menu para o usuário
+        System.out.println("Bem-vindo ao sistema de pedidos!");
+        System.out.print("Digite o ID do cliente: ");
+        int clienteId = scanner.nextInt();
+        scanner.nextLine(); // Limpa o buffer do scanner
 
-            // Listar todos os clientes
-            System.out.println("Lista de Clientes:");
-            clienteDAO.listarClientes().forEach(System.out::println);
+        System.out.print("Digite o prato principal: ");
+        String pratoPrincipal = scanner.nextLine();
 
-            // Fechar conexão
-            clienteDAO.fecharConexao();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        System.out.print("Digite a bebida: ");
+        String bebidas = scanner.nextLine();
+
+        System.out.print("Digite a sobremesa: ");
+        String sobremesas = scanner.nextLine();
+
+        // Adiciona o pedido usando o PedidoService
+        PedidoService.adicionarItemAoPedido(clienteId, pratoPrincipal, bebidas, sobremesas);
+
+        scanner.close();
     }
 }
-
