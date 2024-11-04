@@ -50,7 +50,7 @@ public class PedidoService {
                 if (generatedKeys.next()) {
                     int pedidoId = generatedKeys.getInt(1);
 
-                    // Exibe os dados do pedido
+
                     exibirDetalhesPedido(pedidoId);
                 }
             } else {
@@ -93,7 +93,7 @@ public class PedidoService {
     }
 
     public static void main(String[] args) {
-        // Exemplo de uso
+
         int clienteId = 6; // ID do cliente que está fazendo o pedido
         String pratoPrincipal = "Pizza de Muçarela";
         String bebidas = "Pepsi";

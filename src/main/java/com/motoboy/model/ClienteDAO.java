@@ -42,7 +42,7 @@ public class ClienteDAO {
 
         // Verifica se o cliente já existe
         if (clienteExiste(cliente)) {
-            System.out.println("Cliente já existe."); // Mensagem para cliente existente
+            System.out.println("Cliente já existe.");
             return; // Retorna imediatamente se o cliente existir
         }
 

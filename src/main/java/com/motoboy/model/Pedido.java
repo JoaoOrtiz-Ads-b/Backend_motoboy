@@ -20,7 +20,5 @@ public class Pedido {
         this.aceito = aceito;
     }
 
-    // Getters e Setters
-    // toString() para facilitar o teste
 }
 
